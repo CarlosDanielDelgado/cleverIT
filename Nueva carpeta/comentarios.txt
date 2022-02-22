@@ -1,0 +1,6 @@
+Comentarios: 
+ejercicio 1: se pueden generar mas casos de prueba obteniendo mas informacion del funcionamiento general.
+ejercicio 2: se tomaron estos endpoint: comments, albums y posts; y se hicieron pruebas funcionales. 
+Se consideraron pruebas positivas y negativas, al igual que pruebas exploratorias. 
+Tecnica de caja negra y gris, si bien es cierto que las pruebas de postman son principalmente funcionales 
+las considere caja grisporque se tiene una idea del servicio. no existio caja blanca por no haber acceso al codigo.

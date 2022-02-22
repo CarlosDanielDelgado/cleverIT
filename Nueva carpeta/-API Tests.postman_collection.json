@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "e13a3a13-5aa4-4749-85ec-7cd3635e5a29",
+		"name": "-API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Se transforma a JSON la respuesta\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// La respuesta es un array, se toma el primer elemento para ejemplo de verificaciones sobre la respuesta\r",
+							"var firstResource = jsonData[0];\r",
+							"\r",
+							"pm.test(\"postId: 1\", function () {\r",
+							"    pm.expect(firstResource.postId).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id: 1\", function () {\r",
+							"    pm.expect(firstResource.id).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name:\", function () {\r",
+							"    pm.expect(firstResource.name).to.eq(\"id labore ex et quam laborum\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"email:\", function () {\r",
+							"    pm.expect(firstResource.email).to.eq(\"Eliseo@gardner.biz\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"body:\", function () {\r",
+							"    pm.expect(firstResource.body).to.eq(\"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /albums?userId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Se transforma a JSON la respuesta\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// La respuesta es un array, se toma el primer elemento para ejemplo de verificaciones sobre la respuesta\r",
+							"var firstResource = jsonData[0];\r",
+							"\r",
+							"pm.test(\"userId:\", function () {\r",
+							"    pm.expect(firstResource.userId).to.eq(2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id: 11\", function () {\r",
+							"    pm.expect(firstResource.id).to.eq(11);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"title:\", function () {\r",
+							"    pm.expect(firstResource.title).to.eq(\"quam nostrum impedit mollitia quod et dolor\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/albums?userId=2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"albums"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /albums/id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Se transforma a JSON la respuesta\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"userId: 1\", function () {\r",
+							"    pm.expect(jsonData.userId).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id: 1\", function () {\r",
+							"    pm.expect(jsonData.id).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"title:\", function () {\r",
+							"    pm.expect(jsonData.title).to.eq(\"quidem molestiae enim\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/albums/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"albums",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"id is a number\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+							"});\r",
+							"pm.test(\"title\", function () {\r",
+							"    pm.expect(jsonData.title).to.eql(\"foo\");\r",
+							"});\r",
+							"pm.test(\"body\", function () {\r",
+							"    pm.expect(jsonData.body).to.eql(\"bar\");\r",
+							"});\r",
+							"pm.test(\"userId\", function () {\r",
+							"    pm.expect(jsonData.userId).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"// Se puede guardar variable de entorno para posteriores pruebas\r",
+							"pm.environment.set(\"id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"foo\",\r\n    \"body\": \"bar\",\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /posts/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"id is a number\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+							"});\r",
+							"pm.test(\"title\", function () {\r",
+							"    pm.expect(jsonData.title).to.eql(\"foo\");\r",
+							"});\r",
+							"pm.test(\"body\", function () {\r",
+							"    pm.expect(jsonData.body).to.eql(\"bar\");\r",
+							"});\r",
+							"pm.test(\"userId\", function () {\r",
+							"    pm.expect(jsonData.userId).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"// Se puede guardar variable de entorno para posteriores pruebas\r",
+							"pm.environment.set(\"id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"foo\",\r\n    \"body\": \"bar\",\r\n    \"userId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /posts/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"id is a number\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+							"});\r",
+							"pm.test(\"userId\", function () {\r",
+							"    pm.expect(jsonData.userId).to.eql(1);\r",
+							"});\r",
+							"pm.test(\"title\", function () {\r",
+							"    pm.expect(jsonData.title).to.eql(\"qui est esse\");\r",
+							"});\r",
+							"pm.test(\"body\", function () {\r",
+							"    pm.expect(jsonData.body).to.eql(\"Patched\");\r",
+							"});\r",
+							"\r",
+							"// Se puede guardar variable de entorno para posteriores pruebas\r",
+							"pm.environment.set(\"id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"Patched\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/2",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/todos/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /posts/3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
